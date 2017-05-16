@@ -1,6 +1,6 @@
 import { LabAngularDataBindingPage } from './app.po';
 
-describe('lab-angular-data-binding App', function() {
+describe('lab-angular-data-binding App', () => {
   let page: LabAngularDataBindingPage;
 
   beforeEach(() => {
