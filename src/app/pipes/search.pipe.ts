@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
   name: "search",
-  pure: false, // We mark the pipe as "impure"
+  pure: false
 })
 export class SearchPipe implements PipeTransform {
 

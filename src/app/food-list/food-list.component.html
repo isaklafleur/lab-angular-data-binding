@@ -25,14 +25,15 @@
   <input class="input-food" placeholder="Search for item..." type="text" [(ngModel)]="pattern">
 
   <div class="food-list">
-    <div class="food-list-items" *ngFor="let item of foodList | search:'name':pattern">
+    <!-- <div class="food-list-items" *ngFor="let item of foodList | search:'name':pattern"> -->
+    <div class="food-list-items" *ngFor="let item of foodList | filter: pattern">
       <div>{{item.name}}</div>
       <div>{{item.calories}} kcal</div>
       <div>
-        <img class="food-item" [src]="item.image" alt="{{item.name}}">
+        <img class=" food-item " [src]="item.image " alt="{{item.name}} ">
       </div>
       <div>
-        <button type="button" class="btn-add-item" (click)="todaysFood(item)">Add to Today Specials</button>
+        <button type="button " class="btn-add-item " (click)="todaysFood(item) ">Add to Today Specials</button>
       </div>
     </div>
   </div>

@@ -6,12 +6,14 @@ import { HttpModule } from "@angular/http";
 import { AppComponent } from "./app.component";
 import { FoodListComponent } from "./food-list/food-list.component";
 import { SearchPipe } from "./pipes/search.pipe";
+import { FilterPipe } from "./pipes/filter.pipe";
 
 @NgModule({
   declarations: [
     AppComponent,
     FoodListComponent,
-    SearchPipe
+    SearchPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -22,3 +24,4 @@ import { SearchPipe } from "./pipes/search.pipe";
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
