@@ -1,7 +1,7 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: 'search',
+  name: "search",
   pure: false, // We mark the pipe as "impure"
 })
 export class SearchPipe implements PipeTransform {
@@ -13,7 +13,7 @@ export class SearchPipe implements PipeTransform {
     if (!value) {
       return items;
     }
-    const myPattern = new RegExp(value, 'i');
+    const myPattern = new RegExp(value, "i");
     return items.filter(it => it[field].match(myPattern));
   }
 }

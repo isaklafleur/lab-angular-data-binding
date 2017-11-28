@@ -1,42 +1,39 @@
-<div class="container">
-  <h1>Food Court</h1><br>
-  <div class="row">
-    <div class="col-md-6">
-      <h2 *ngIf="displayList">Todays Food List</h2>
-      <ul *ngFor="let item of todaysFoodList">
-        <li>{{ item.name }}</li>
-      </ul>
+<div class="container-food-list">
+  <h1>Food Court</h1>
+  <div class="todays-special">
+    <h2 *ngIf="displayList">
+      Todays Food List
+    </h2>
+    <ul>
+      <li *ngFor="let item of todaysFoodList">{{ item.name }}</li>
+    </ul>
+    <h3 *ngIf="displayList">
+      <strong>Total Calories:</strong> {{ totalCalories }}
+    </h3>
+  </div>
+  <div>
+    <button type="button" class="btn-add-item" (click)="displayForm()">Add New Item</button>
+  </div>
+
+  <div class="form-new-item" *ngIf="display">
+    <input class="input-food" type="text" placeholder="Name" name="name" [(ngModel)]="newFood.name">
+    <input class="input-food" type="number" placeholder="Calories" name="calories" [(ngModel)]="newFood.calories">
+    <input class="input-food" type="text" placeholder="Image Url" name="image" [(ngModel)]="newFood.image">
+    <button class="btn-add-item" type="button" (click)="addItem()">Save</button>
+  </div>
+
+  <input class="input-food" placeholder="Search for item..." type="text" [(ngModel)]="pattern">
+
+  <div class="food-list">
+    <div class="food-list-items" *ngFor="let item of foodList | search:'name':pattern">
+      <div>{{item.name}}</div>
+      <div>{{item.calories}} kcal</div>
+      <div>
+        <img class="food-item" [src]="item.image" alt="{{item.name}}">
+      </div>
+      <div>
+        <button type="button" class="btn-add-item" (click)="todaysFood(item)">Add to Today Specials</button>
+      </div>
     </div>
-    <div class="col-md-6">
-      <h3 *ngIf="displayList"><strong>Total Calories:</strong> {{ totalCalories }}</h3>
-    </div>
   </div>
-  <button class="btn btn-success" (click)="displayForm()">add new Item</button><br><br>
-
-  <form class="form-inline" *ngIf="display">
-    <input type="text" placeholder="Name" name="name" [(ngModel)]="newFood.name">
-    <input type="text" placeholder="Calories" name="calories" [(ngModel)]="newFood.calories">
-    <input type="text" placeholder="Image" name="image" [(ngModel)]="newFood.image">
-    <button (click)="addItem()">Add new Item</button>
-  </form><br>
-
-  <label for="things_name"> Search thing: </label>
-  <input id="things_name" placeholder="thing name" type="text" [(ngModel)]="pattern">
-  
-<div class="row">
-    <div class="col-md-2"><strong>Items</strong></div>
-    <div class="col-md-2"><strong>Calories</strong></div>
-    <div class="col-md-6"><strong>Images</strong></div>
-    <div class="col-md-2"><strong>Add to Todays Food List</strong></div>
-
-  </div>
-
-  <div class="row" *ngFor="let item of foodList | search:'name':pattern">
-    <div class="col-md-2">{{item.name}}</div>
-    <div class="col-md-2">{{item.calories}}</div>
-    <div class="col-md-6"><img class="img-responsive" [src]="item.image" alt=""></div>
-    <div class="col-md-2"><button class="btn btn-success" (click)="todaysFood(item)">YES</button></div>
-
-  </div>
-
 </div>

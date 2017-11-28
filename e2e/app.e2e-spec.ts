@@ -1,14 +1,14 @@
-import { LabAngularDataBindingPage } from './app.po';
+import { AppPage } from './app.po';
 
-describe('lab-angular-data-binding App', () => {
-  let page: LabAngularDataBindingPage;
+describe('lab-angular-data-binding2 App', () => {
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new LabAngularDataBindingPage();
+    page = new AppPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Welcome to app!');
   });
 });

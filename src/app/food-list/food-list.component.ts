@@ -1,37 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import foodList from '../foods';
+import { Component, OnInit } from "@angular/core";
+import foodList from "../foods";
 
 @Component({
-  selector: 'app-food-list',
-  templateUrl: './food-list.component.html',
-  styleUrls: ['./food-list.component.css']
+  selector: "app-food-list",
+  templateUrl: "./food-list.component.html",
+  styleUrls: ["./food-list.component.css"]
 })
 export class FoodListComponent implements OnInit {
-  foodList: Object[];
-  newFood: Object = {};
-  pattern: String;
+  foodList: object[];
+  newFood = {
+    name: null,
+    calories: null,
+    image: null,
+    quantity: null
+  };
+  pattern: string;
   display = false;
   displayList = false;
-  todaysFoodList: Array<Object> = [];
-  totalCalories: Number = 0;
+  todaysFoodList: object[] = [];
+  totalCalories = 0;
 
   constructor() { }
 
-  ngOnInit() {
-    this.foodList = foodList;
-  }
   displayForm() {
     this.display = true;
   }
   addItem() {
     foodList.push(this.newFood);
     this.display = false;
+    this.newFood = {
+      name: null,
+      calories: null,
+      image: null,
+      quantity: null
+    };
   }
   todaysFood(item) {
     this.todaysFoodList.push(item);
     this.displayList = true;
-    this.todaysFoodList.forEach(item => {
-      this.totalCalories += item["calories"];
-    })
+    this.todaysFoodList.forEach(el => {
+      this.totalCalories += el["calories"];
+    });
+  }
+
+  ngOnInit() {
+    this.foodList = foodList;
   }
 }

@@ -1,0 +1,42 @@
+.container-food-list {
+  padding: 10px;
+}
+
+.food-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.food-list-items {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.food-list-items {
+  display: flex;
+  align-items: center;
+  border: 5px solid lightcoral;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.food-item {
+  max-width: 100px;
+  border-radius: 50%;
+}
+
+.input-food {
+  padding: 5px;
+  border: 1px dashed lightcoral;
+  border-radius: 1px;
+  margin: 10px;
+}
+
+.btn-add-item {
+  padding: 5px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px #888888;
+}
