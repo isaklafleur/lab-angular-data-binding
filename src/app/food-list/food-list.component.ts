@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import foodList from "../foods";
+import { Food } from "../models/food.model";
+import fooditems from "../foods";
+
 
 @Component({
   selector: "app-food-list",
@@ -7,43 +9,45 @@ import foodList from "../foods";
   styleUrls: ["./food-list.component.css"]
 })
 export class FoodListComponent implements OnInit {
-  foodList: object[];
-  newFood = {
-    name: null,
-    calories: null,
-    image: null,
-    quantity: null
-  };
+  foodList: Food[];
+  newFood: Food = new Food();
   pattern: string;
-  display = false;
-  displayList = false;
-  todaysFoodList: object[] = [];
-  totalCalories = 0;
+  display: boolean;
+  displayList: boolean;
+  todaysFoodList: Food[] = [];
+  totalCalories: number;
 
   constructor() { }
 
-  displayForm() {
-    this.display = true;
-  }
-  addItem() {
-    foodList.push(this.newFood);
-    this.display = false;
-    this.newFood = {
-      name: null,
-      calories: null,
-      image: null,
-      quantity: null
-    };
-  }
-  todaysFood(item) {
-    this.todaysFoodList.push(item);
-    this.displayList = true;
-    this.todaysFoodList.forEach(el => {
-      this.totalCalories += el["calories"];
-    });
+  // -- START private methods //
+
+  private updateCalories() {
+    this.totalCalories = this.todaysFoodList.reduce((acc, el) => acc + el.calories, 0);
   }
 
+  // -- END private methods //
+
+  // -- START handle methods //
+
+  handledisplayForm() {
+    this.display = true;
+  }
+
+  handleAddNewItem() {
+    this.foodList.push(this.newFood);
+    this.display = false;
+    this.newFood = new Food();
+  }
+
+  handleAddTodaysSpecial(item) {
+    this.todaysFoodList.push(item);
+    this.displayList = true;
+    this.updateCalories();
+  }
+
+  // -- END handle methods //
+
   ngOnInit() {
-    this.foodList = foodList;
+    this.foodList = fooditems.map(data => new Food(data));
   }
 }

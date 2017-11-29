@@ -12,28 +12,31 @@
     </h3>
   </div>
   <div>
-    <button type="button" class="btn-add-item" (click)="displayForm()">Add New Item</button>
+    <button type="button" class="btn-add-item" (click)="handledisplayForm()">Add New Item</button>
   </div>
 
   <div class="form-new-item" *ngIf="display">
     <input class="input-food" type="text" placeholder="Name" name="name" [(ngModel)]="newFood.name">
     <input class="input-food" type="number" placeholder="Calories" name="calories" [(ngModel)]="newFood.calories">
     <input class="input-food" type="text" placeholder="Image Url" name="image" [(ngModel)]="newFood.image">
-    <button class="btn-add-item" type="button" (click)="addItem()">Save</button>
+    <button class="btn-add-item" type="button" (click)="handleAddNewItem()">Save</button>
   </div>
 
   <input class="input-food" placeholder="Search for item..." type="text" [(ngModel)]="pattern">
 
   <div class="food-list">
-    <!-- <div class="food-list-items" *ngFor="let item of foodList | search:'name':pattern"> -->
-    <div class="food-list-items" *ngFor="let item of foodList | filter: pattern">
+    <!--
+      <div class="food-list-items" *ngFor="let item of (foodList | search:'name':pattern")>
+        another filter pipe    
+    -->
+    <div class="food-list-items" *ngFor="let item of (foodList | filter: pattern)">
       <div>{{item.name}}</div>
       <div>{{item.calories}} kcal</div>
       <div>
-        <img class=" food-item " [src]="item.image " alt="{{item.name}} ">
+        <img class="food-item" [src]="item.image" alt="{{item.name}}">
       </div>
       <div>
-        <button type="button " class="btn-add-item " (click)="todaysFood(item) ">Add to Today Specials</button>
+        <button type="button" class="btn-add-item" (click)="handleAddTodaysSpecial(item)">Add to Today Specials</button>
       </div>
     </div>
   </div>
